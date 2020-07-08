@@ -6,25 +6,32 @@ filepath = os.path.join("Resources","budget_data.csv")
 with open(filepath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     csv_header = next(csvreader)
-    
-    MonthCount = 0
+   
+   #Total $ holder
     NetTotal = 0
-    #previousrow
+    
+    #previousrow to calculate change between months
     previous = 0
+    
+    #Greatest Increase Change Holder
     MaxInc = 0
+    
+    #Greatest Decrease Change Holder
     MaxDec = 0
+    
     AvgList = []
+    
     #first row variable
-    i = 1
+    f = 1
 
     for row in csvreader:
-        #Month Total
-        MonthCount = MonthCount + 1
+     
         #Total Profit
         NetTotal = NetTotal + int(row[1])
 
         #Monthly Change
         x = int(row[1])
+        #Temp variable to add change list and compare to Greatest Inc/Dec variables for Max/Min
         Temp = x - previous
         AvgList.append(Temp)
         
@@ -39,13 +46,16 @@ with open(filepath) as csvfile:
                 MaxDecMonth = row[0]
         
         #Get first row to remove from list
-        if i == 1:
+        if f == 1:
             firstrow = int(row[1])
-        i = 0 
+        f = 0 
         #Reset previous row
         previous = int(row[1])
 
-#Average Change 
+#Total Months from counting every row into a list
+MonthCount = len(AvgList)
+
+#Remove first row to get average change, and -1 month because there's nothing to compare from the first month.
 AvgList.remove(firstrow)
 Avg = sum(AvgList)/(MonthCount - 1)
 
