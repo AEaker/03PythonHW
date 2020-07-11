@@ -67,14 +67,16 @@ print("Average Change: $" + str(round(Avg,2)))
 print("Greatest Increase in Profits: " + MaxIncMonth + " ($" + str(MaxInc) + ")")
 print("Greatest Decrease in Profits: " + MaxDecMonth + " ($" + str(MaxDec) + ")")
 
-#Print to text file
-Output = os.path.join("Analysis", "Analysis.txt")
-Analysis = open(Output,"w")
-Analysis.write("Financial Analysis\n ---------------------------")
-Analysis.write("\nTotal Months:" + str(MonthCount))
-Analysis.write("\nTotal: $" + str(NetTotal))
-Analysis.write("\nAverage Change: $" + str(round(Avg,2)))
-Analysis.write("\nGreatest Increase in Profits: " + MaxIncMonth + " ($" + str(MaxInc) + ")")
-Analysis.write("\nGreatest Decrease in Profits: " + MaxDecMonth + " ($" + str(MaxDec) + ")")
-Analysis.close()
+#Write it all to a .txt in folder titled "Analysis"
+Output = "Analysis/Analysis.txt"
+os.makedirs(os.path.dirname(Output), exist_ok=True)
+A = open(Output,"w")
+A.write("Financial Analysis\n ---------------------------")
+A.write("\nTotal Months:" + str(MonthCount))
+A.write("\nTotal: $" + str(NetTotal))
+A.write("\nAverage Change: $" + str(round(Avg,2)))
+A.write("\nGreatest Increase in Profits: " + MaxIncMonth + " ($" + str(MaxInc) + ")")
+A.write("\nGreatest Decrease in Profits: " + MaxDecMonth + " ($" + str(MaxDec) + ")")
+A.close()
 
+#Am I supposed to close the csv file I'm reading? LOL
