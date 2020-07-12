@@ -2,7 +2,7 @@ import os
 import csv
 
 
-filepath = os.path.join("Resources","budget_data.csv")
+filepath = "Resources","budget_data.csv"
 with open(filepath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     csv_header = next(csvreader)
@@ -78,5 +78,4 @@ A.write("\nAverage Change: $" + str(round(Avg,2)))
 A.write("\nGreatest Increase in Profits: " + MaxIncMonth + " ($" + str(MaxInc) + ")")
 A.write("\nGreatest Decrease in Profits: " + MaxDecMonth + " ($" + str(MaxDec) + ")")
 A.close()
-
-#Am I supposed to close the csv file I'm reading? LOL
+csvfile.close()

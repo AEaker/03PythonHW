@@ -3,7 +3,7 @@
 import os
 import csv
 
-filepath = os.path.join("Resources/election_data.csv")
+filepath = "Resources/election_data.csv"
 with open(filepath) as csvfile:
     csvreader = csv.reader(csvfile)
     csvheader = next(csvreader)
@@ -46,5 +46,4 @@ A.write("\n---------------")
 A.write("\nWinner: " + Winner)
 A.write("\n---------------") 
 A.close()
-
-#Am I supposed to close the csv file I'm reading? LOL
+csvfile.close()
